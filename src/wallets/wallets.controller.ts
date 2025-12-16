@@ -21,23 +21,22 @@ export class WalletsController {
 
   /**
    * Endpoint: POST /wallets/:walletId/fund
-   * Adds funds to a wallet. Use 200 OK or 204 No Content for successful mutation.
+   * Adds funds to a wallet.
    */
   @Post(':walletId/fund')
-  @HttpCode(HttpStatus.OK) // Explicitly set to 200 OK for a successful mutation
+  @HttpCode(HttpStatus.OK) 
   async fundWallet(@Param('walletId') walletId: string, @Body() dto: FundWalletDto): Promise<Wallet> {
-    // Assuming fundWallet service method returns the updated wallet object
+ 
     return this.walletsService.fundWallet(walletId, dto.amount);
   }
 
   /**
    * Endpoint: POST /wallets/transfer
-   * Transfers funds between two wallets. Use 200 OK for successful transaction.
+   * Transfers funds between two wallets. 
    */
   @Post('transfer')
-  @HttpCode(HttpStatus.OK) // Explicitly set to 200 OK for a completed transaction
+  @HttpCode(HttpStatus.OK) 
   async transfer(@Body() dto: TransferWalletDto): Promise<Response> {
-    // Assuming transfer service method returns { success: true }
     return this.walletsService.transfer(dto);
   }
 
@@ -47,7 +46,6 @@ export class WalletsController {
    */
   @Get(':walletId')
   async getWallet(@Param('walletId') walletId: string) {
-    // Return type can be a DTO or the structured object { wallet, transactions }
     return this.walletsService.getWalletDetails(walletId);
   }
 
