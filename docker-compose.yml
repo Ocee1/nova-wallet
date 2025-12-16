@@ -1,0 +1,19 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: nova_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: nova_user
+      POSTGRES_PASSWORD: nova_password
+      POSTGRES_DB: nova_db
+      # DATABASE_URL: postgres://nova_user:nova_password@nova_postgres:5432/nova_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
