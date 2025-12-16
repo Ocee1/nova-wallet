@@ -188,7 +188,8 @@ export class WalletsService {
     return wallet;
   }
 
-  async getAllWallets(): Promise<Wallet[]> {
-    return this.walletsRepository.find();
+  async getAllWallets(): Promise<Response> {
+    let wallets = await this.walletsRepository.find();
+    return { message: 'Wallets retrieved successfully', data:wallets };
   }
 }

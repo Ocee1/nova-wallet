@@ -52,7 +52,7 @@ export class WalletsController {
   }
 
   @Get()
-  async getWallets(): Promise<Wallet[]> {
+  async getWallets(): Promise<Response> {
     return this.walletsService.getAllWallets();
   }
 }
