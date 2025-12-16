@@ -1,21 +1,38 @@
+# Nova Wallet Backend
 
+A NestJS backend project for managing wallets and transactions.
 
-## Project setup
+---
+
+## Prerequisites
+
+- Node.js >= 18  
+- pnpm  
+- Docker (for PostgreSQL)  
+- PostgreSQL client (optional, for direct DB access)
+
+---
+
+## 1. Install Dependencies
 
 ```bash
-$ pnpm install
-```
+pnpm install
 
-## Compile and run the project
+2. Start PostgreSQL (Docker or your preferred DB)
 
-```bash
+Set up Postgres using Docker (or your preferred option):
+
+docker compose up -d postgres
+
+3. Run the Application
 # development
-$ pnpm run start
+pnpm run start
 
-# watch mode
-$ pnpm run start:dev
+# watch mode (auto-reload)
+pnpm run start:dev
 
 # production mode
-$ pnpm run start:proda
-```
+pnpm run start:prod
 
+# start Postgres + app together (if configured)
+pnpm run start:dev:db
