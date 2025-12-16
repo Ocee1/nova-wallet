@@ -11,23 +11,20 @@ export class TransactionsService {
     private transactionsRepository: Repository<Transaction>,
   ) {}
 
-  /**
-   * Helper function to determine the correct repository/manager context.
-   * If a queryRunner is provided, use its manager; otherwise, use the default repository.
-   */
+  
   private getManagerOrRepository(queryRunner?: QueryRunner): Repository<Transaction> {
     if (queryRunner) {
-      // Use the manager from the ongoing transaction
+      
       return queryRunner.manager.getRepository(Transaction);
     }
-    // Use the default repository
+   
     return this.transactionsRepository;
   }
 
   // --- CREATE CREDIT ---
   async createCredit(
     data: { walletId: string; amount: number },
-    queryRunner?: QueryRunner, // Make the QueryRunner optional
+    queryRunner?: QueryRunner, 
   ): Promise<Transaction> {
     
     const manager = this.getManagerOrRepository(queryRunner);
@@ -43,7 +40,7 @@ export class TransactionsService {
   // --- CREATE DEBIT ---
   async createDebit(
     data: { walletId: string; amount: number },
-    queryRunner?: QueryRunner, // Make the QueryRunner optional
+    queryRunner?: QueryRunner, 
   ): Promise<Transaction> {
     
     const manager = this.getManagerOrRepository(queryRunner);
@@ -58,10 +55,10 @@ export class TransactionsService {
 
   // --- GET BY WALLET ---
   async getByWallet(walletId: string): Promise<Transaction[]> {
-    // This is a simple read, so we use the default repository
+    
     return this.transactionsRepository.find({
       where: { walletId },
-      order: { createdAt: 'DESC' }, // Order by newest first
+      order: { createdAt: 'DESC' }, 
     });
   }
 }
